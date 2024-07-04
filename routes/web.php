@@ -12,7 +12,7 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('home');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -26,6 +26,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/tickets', \App\Http\Controllers\TicketsController::class);
 
+    // APIs
+    require __DIR__ . '/api.php';
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
